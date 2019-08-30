@@ -5,25 +5,32 @@
   <script src='https://cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.5.1/tabletop.min.js'></script>
     <script type='text/javascript'>    
     var publicSpreadsheetUrl = 'https://docs.google.com/spreadsheets/d/1JWd9F36hEa92WuPwbEDEi2qVRciJIrJhW6ee2szmY58/edit?usp=sharing';
-
    function init() {
-      Tabletop.init( { key: publicSpreadsheetUrl,
+      Tabletop.init( { key: '1JWd9F36hEa92WuPwbEDEi2qVRciJIrJhW6ee2szmY58',
                        callback: showInfo,
                        simpleSheet: true } )
    }
-
-    function showInfo(data, tabletop) {
-     alert('Successfully processed!')
-     console.log(data);
-   }
-
-  window.addEventListener('DOMContentLoaded', init)
+   window.addEventListener('DOMContentLoaded', init)
+      
+   for (var i = 0; i < data.length; i++) {
+     $('.post').append(
+      '<div class="article" style=”background-image: url( ' +
+     data[i].img + '.jpg)">' +
+     '<div class="text">' +
+      '<h1>' + data[i].totaldonations + '</h1>'+
+      data[i].totaldonators +
+     '</div> ' + '<div class="meta-info">' + '<img src ="’ + data[i].img + '.jpg">'+
+      '<div class="date">' + data[i].date + '</div>' +
+     '</div>' +
+      '</div>');
+    }
+      
   </script>
 </head>
-
-
-
 <body>
+  
+  <div class="post">
+  </div>
+  
 </body>
-
 </html>
