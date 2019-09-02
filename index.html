@@ -1,41 +1,78 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.5.1/tabletop.min.js'></script>
-    <script type='text/javascript'>    
-    var publicSpreadsheetUrl = 'https://docs.google.com/spreadsheets/d/1JWd9F36hEa92WuPwbEDEi2qVRciJIrJhW6ee2szmY58/edit?usp=sharing';
-   function init() {
-      Tabletop.init( { key: '1JWd9F36hEa92WuPwbEDEi2qVRciJIrJhW6ee2szmY58',
-                       callback: showInfo,
-                       simpleSheet: true } )
-   }
-   window.addEventListener('DOMContentLoaded', init)
-      
-   for (var i = 0; i < data.length; i++) {
-     $('.post').append(
-      '<div class="article" style=”background-image: url( ' +
-     data[i].img + '.jpg)">' +
-     '<div class="text">' +
-      '<h1>' + data[i].totaldonations + '</h1>'+
-      data[i].totaldonators +
-     '</div> ' + '<div class="meta-info">' + '<img src ="’ + data[i].img + '.jpg">'+
-      '<div class="date">' + data[i].date + '</div>' +
-     '</div>' +
-      '</div>');
-
+  <head>
+    <base target="_top">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Tangerine">
+    <link rel="stylesheet" href="https://igniteyourgratitude.com/style.css">
+    
+  </head>
+  
+  <body>
+  
+  <div class="container-fluid">
+	<div class="row">
+		<div class="col-md-6">
+        <div style="margin-bottom:65px">
+            <img src="http://igniteyourgratitude.com/img/monat-gratitude-logo-w.png" alt="Smiley face" height="160" width="160"> 
+        </div>
+        <p id="raised_" class="stroke-title "></p>
+        <p id="raised1" class="stroke-title "></p>
+        <p style="font-weight:700; !important;font-size:3.91em;line-height:40px;">RAISED AT <br>MONATIONS</p>
+        <p class="title">THANK YOU FOR JOINING THE 
+#MONATGRATITUDE MOVEMENT!</p>
+		</div>
+		<div class="col-md-6" style="text-align:right;font-family:'Brandon Grotesque',serif;font-weight:600; !important">
+        <p class="title">PLEDGES MADE</p>
+        <p id="pledges_" class="subtitle"></p>
+        <p class="title">VOLUNTEER HOURS</p>
+        <p id="hours_" class="subtitle"></p>
+        <p class="title">CITIES WHERE MONAT IS <br>MAKING A DIFFERENCE</p>
+        <p id="cities_" class="subtitle"></p>
+        <p id="demo"></p>
+		</div>
+	</div>
+</div>
+  
+    
+    
+<script>
+        values.forEach(function(item, index) {
+            var raised = document.getElementById("raised_");
+            raised.innerHTML += "$" + item[0];
+            var pledges = document.getElementById("pledges_");
+            pledges.innerHTML +=  item[1];
+            var hours = document.getElementById("hours_");
+            hours.innerHTML +=  item[2];
+            var cities = document.getElementById("cities_");
+            cities.innerHTML +=  item[3];
+        });
     }
-      
-  </script>
-</head>
+    window.load = () => {
+        console.log("Hola");
+    }
+    setInterval(getData, 1000);
+    
+    
+    
+
+
+var myVar = setInterval(myTimer, 1000);
+
+function myTimer() {
+  var d = new Date();
+  document.getElementById("demo").innerHTML = d.toLocaleTimeString();
+}
 
 
 
-<body>
-  
-  <div class="post">
-  </div>
-  
-</body>
+    google.script.run.withSuccessHandler(getData).readData();
+    
 
+    </script>    
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
 </html>
