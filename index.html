@@ -1,104 +1,116 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <base target="_top">
+    <base target="_top" />
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap" rel="stylesheet"> 
-    <link rel="stylesheet" href="https://igniteyourgratitude.com/style.css">
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.5.1/tabletop.min.js'></script>
-    <script type='text/javascript'>    
-  	var publicSpreadsheetUrl = 'https://docs.google.com/spreadsheets/d/1JWd9F36hEa92WuPwbEDEi2qVRciJIrJhW6ee2szmY58/edit?usp=sharing';
-  	function init() {
-  	  Tabletop.init( { key: publicSpreadsheetUrl,
-                     callback: showInfo,
-                     simpleSheet: true } )
-  	}
- 	 function showInfo(data, tabletop) {
- 	   alert('Successfully processed!')
- 	   console.log(data);
-		var pledges = document.getElementById("pledges_");
-   		 pledges.innerHTML +=   data.pledgese;
- 	 }
-	  window.addEventListener('DOMContentLoaded', init)
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://igniteyourgratitude.com/style.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.5.1/tabletop.min.js"></script>
+    <script type="text/javascript">
+      const url =
+        "https://docs.google.com/spreadsheets/d/1JWd9F36hEa92WuPwbEDEi2qVRciJIrJhW6ee2szmY58/pubhtml";
+      window.addEventListener("DOMContentLoaded", () => {
+        setInterval(() => {
+          Tabletop.init({
+            key: url,
+            callback: (data, tabletop) => {
+              const hours = document.getElementById("hours_");
+              const cities = document.getElementById("cities_");
+              const pledges = document.getElementById("pledges_");
+              const { models } = tabletop;
+              const sheetData = models.sheet1.elements[0];
+              pledges.innerHTML = sheetData.pledgese;
+              hours.innerHTML = sheetData.hours;
+              cities.innerHTML = sheetData.cities;
+            },
+            simpleSheet: true
+          });
+        }, 5000);
+      });
     </script>
   </head>
-  
+
   <body>
-  
-  <div class="container-fluid">
-	<div class="row">
-		<div class="col-md-12">
-        <div>
-            <img src="http://igniteyourgratitude.com/img/monat-gratitude-logo-w.png" alt="" height="160" width="160" align="left" style="margin-bottom:65px"> 
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <div>
+            <img
+              src="http://igniteyourgratitude.com/img/monat-gratitude-logo-w.png"
+              alt=""
+              height="160"
+              width="160"
+              align="left"
+              style="margin-bottom:65px"
+            />
+          </div>
         </div>
+      </div>
+      <div class="row">
+        <div
+          class="col-md-12"
+          style="text-align:center;font-family:'Josefin Sans', sans-serif;font-weight:600; !important"
+        >
+          <div class="col-md-4" style="float:left;">
+            <p id="pledges_" class="subtitle"></p>
+            <p class="title">PLEDGES MADE</p>
+          </div>
+
+          <div class="col-md-4" style="float:left;">
+            <p id="cities_" class="subtitle"></p>
+            <p class="title" style="font-size:3.2em;">
+              CITIES WHERE MONAT IS <br />MAKING A DIFFERENCE
+            </p>
+          </div>
+
+          <div class="col-md-4" style="float:left;">
+            <p id="hours_" class="subtitle"></p>
+            <p class="title">VOLUNTEER HOURS</p>
+          </div>
         </div>
-   </div>
-   <div class="row">
-		<div class="col-md-12" style="text-align:center;font-family:'Josefin Sans', sans-serif;font-weight:600; !important">
-        
-        
-        <div class="col-md-4" style="float:left;">
-        <p id="pledges_" class="subtitle"></p>
-        <p class="title">PLEDGES MADE</p>
+        <div class="row">
+          <div
+            class="col-md-12"
+            style="float:left;margin-top:40px;text-align:center;"
+          >
+            <p id="demo"></p>
+            <p
+              class="stroke-title"
+              style="-webkit-text-stroke: 1px white;line-height: 70px;font-size:6.4em;font-family:'Josefin Sans', sans-serif;"
+            >
+              THANK YOU FOR JOINING THE
+              <span style="-webkit-text-stroke: 0px white;color:#fff;"
+                >#MONATGRATITUDE</span
+              >
+              MOVEMENT!
+            </p>
+          </div>
         </div>
-        
-        <div class="col-md-4" style="float:left;">
-        <p id="cities_" class="subtitle"></p>
-        <p class="title" style="font-size:3.2em;">CITIES WHERE MONAT IS <br>MAKING A DIFFERENCE</p>
-        </div>
-        
-        <div class="col-md-4" style="float:left;">
-        <p id="hours_" class="subtitle"></p>
-        <p class="title">VOLUNTEER HOURS</p>
-        </div>
+      </div>
     </div>
-    <div class="row">
-        <div class="col-md-12" style="float:left;margin-top:40px;text-align:center;">
-        <p id="demo"></p>
-        <p class="stroke-title" style="-webkit-text-stroke: 1px white;line-height: 70px;font-size:6.4em;font-family:'Josefin Sans', sans-serif;">THANK YOU FOR JOINING THE 
-        <span style="-webkit-text-stroke: 0px white;color:#fff;">#MONATGRATITUDE</span> MOVEMENT!</p>
-        </div>
-		</div>
-	</div>
-    
-</div>
-  
-    
-    
-    <script>
-    
-    function getData(values) {
-    values.forEach(function(item, index) {
-    
-    
-    var hours = document.getElementById("hours_");
-    hours.innerHTML +=  item[2];
-    var cities = document.getElementById("cities_");
-    cities.innerHTML +=  item[3];
-    
-    });
-    }
-    
-    
-    
-
-
-var myVar = setInterval(myTimer, 1000);
-
-function myTimer() {
-  var d = new Date();
-  document.getElementById("demo").innerHTML = d.toLocaleTimeString();
-}
-
-
-
-    google.script.run.withSuccessHandler(getData).readData();
-    
-
-    </script>    
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>
