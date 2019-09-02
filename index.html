@@ -17,6 +17,8 @@
  	 function showInfo(data, tabletop) {
  	   alert('Successfully processed!')
  	   console.log(data);
+		var pledges = document.getElementById("pledges_");
+   		 pledges.innerHTML +=   data.pledgese;
  	 }
 	  window.addEventListener('DOMContentLoaded', init)
     </script>
@@ -69,8 +71,7 @@
     function getData(values) {
     values.forEach(function(item, index) {
     
-    var pledges = document.getElementById("pledges_");
-    pledges.innerHTML +=   data.pledgese;
+    
     var hours = document.getElementById("hours_");
     hours.innerHTML +=  item[2];
     var cities = document.getElementById("cities_");
