@@ -20,18 +20,18 @@
       <br />
       <label>
         City
-        <input type="city" id="city" placeholder="Write here city" />
+        <input type="text" id="city" placeholder="Write here city" />
       </label>
       <br />
       <label>
         State
-        <input type="state" id="state" placeholder="Write here state" />
+        <input type="text" id="state" placeholder="Write here state" />
       </label>
       <br />
       <label>
         Hours
         <input
-          type="hours"
+          type="number"
           id="hours"
           placeholder="Write here hours"
           required
@@ -41,7 +41,7 @@
       <label>
         Inspirations
         <input
-          type="inspirations"
+          type="text"
           id="inspirations"
           placeholder="Write here inspirations"
         />
@@ -49,11 +49,7 @@
       <br />
       <label>
         Practice
-        <input
-          type="practice"
-          id="practice"
-          placeholder="Write here practice"
-        />
+        <input type="text" id="practice" placeholder="Write here practice" />
       </label>
       <br />
 
@@ -64,7 +60,7 @@
 
     <script>
       const token =
-        "ya29.Glt4B2B7cOZHlYCE6vV220XUmF71CtARQAY0BGaseQhh9U7i4tfzrdv0Zz5hhsZyAsoH2h5P5zpHLC3Vbk249NAwzARwR894_ZLFqJIBBF4W5ZY7c4zEz7HApVjk";
+        "ya29.Glt4B9r_4Fz4hm29yVg0bsrjf8fW9LoXJJpnzgwrM0gloZP69lOMc0vX0HYSNlHu-OY4zorpBYWVVvHv37nSnZWpAdFbvzLMvUbcyAYcxeX_zopnzAJPPtiyn08Z";
       const id = "1JWd9F36hEa92WuPwbEDEi2qVRciJIrJhW6ee2szmY58";
       const form = document.getElementById("send_user");
       form.addEventListener("submit", async e => {
@@ -85,7 +81,7 @@
           })
         });
         const getTotalUsers = await fetchTotalUsers.json();
-        const totalUsers = parseInt(getTotalUsers.values[0][0], 10) + 2;
+        const totalUsers = parseInt(getTotalUsers.values[0][0], 10) + 1;
         const range = `A${totalUsers}:G${totalUsers}`;
         const urlSheet2 = `https://sheets.googleapis.com/v4/spreadsheets/${id}/values/Sheet2!${range}?valueInputOption=RAW`;
         const fetchSetUser = await fetch(urlSheet2, {
@@ -96,7 +92,15 @@
           body: JSON.stringify({
             majorDimension: "ROWS",
             values: [
-              [full_name, email, city, state, hours, practice, inspirations]
+              [
+                full_name,
+                email,
+                city,
+                state,
+                parseInt(hours),
+                practice,
+                inspirations
+              ]
             ]
           })
         });
