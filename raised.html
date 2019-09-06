@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link
+      href="https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://igniteyourgratitude.com/style.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.5.1/tabletop.min.js"></script>
+    <script type="text/javascript">
+      const url =
+        "https://docs.google.com/spreadsheets/d/1JWd9F36hEa92WuPwbEDEi2qVRciJIrJhW6ee2szmY58/pubhtml";
+      window.addEventListener("DOMContentLoaded", () => {
+        setInterval(() => {
+          Tabletop.init({
+            key: url,
+            callback: (data, tabletop) => {
+              const hours = document.getElementById("hours_");
+              const cities = document.getElementById("cities_");
+              const pledges = document.getElementById("pledges_");
+              const { models } = tabletop;
+              const sheetData = models.sheet1.elements[0];
+              pledges.innerHTML = sheetData.pledges;
+              hours.innerHTML = sheetData.hours;
+              cities.innerHTML = sheetData.cities;
+            },
+            simpleSheet: true
+          });
+        }, 5000);
+      });
+    </script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </head>
+
+  <body>
+  <div class="container"  style="width:100%;">
+      <div class="row">
+        <div class="col">
+            <img class="logo"
+              src="http://igniteyourgratitude.com/img/monat-gratitude-logo-w.png"
+              alt=""
+              height="160"
+              width="160"
+              align="left"
+            />  
+         </div>
+        </div>
+     
+      
+        
+          <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" style="float:left;">
+            <p id="pledges_" class="subtitle"></p>
+            <p class="title">PLEDGES MADE</p>
+          </div>
+
+          <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" style="float:left;">
+            <p id="cities_" class="subtitle"></p>
+            <p class="title cities">
+              CITIES WHERE MONAT IS MAKING A DIFFERENCE
+            </p>
+          </div>
+
+          <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" style="float:left;">
+            <p id="hours_" class="subtitle"></p>
+            <p class="title">VOLUNTEER HOURS</p>
+          </div>
+        
+          
+          <div
+            class="col-md-12"
+            style="float:left;margin-top:40px;text-align:center;"
+          >
+            <p id="demo"></p>
+            <p
+              class="stroke-title"           
+            >
+              THANK YOU FOR JOINING THE
+              <span style="-webkit-text-stroke: 0px white;color:#fff;"
+                >#MONATGRATITUDE</span
+              >
+              MOVEMENT!
+            </p>
+          
+       </div>
+    </div>
+  </div>
+  </body>
+</html>
