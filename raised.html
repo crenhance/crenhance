@@ -21,11 +21,13 @@
           Tabletop.init({
             key: url,
             callback: (data, tabletop) => {
+              const raised = document.getElementById("raised_");
               const hours = document.getElementById("hours_");
               const cities = document.getElementById("cities_");
               const pledges = document.getElementById("pledges_");
               const { models } = tabletop;
               const sheetData = models.sheet1.elements[0];
+              raised.innerHTML = sheetData.raised;
               pledges.innerHTML = sheetData.pledges;
               hours.innerHTML = sheetData.hours;
               cities.innerHTML = sheetData.cities;
@@ -54,7 +56,10 @@
          </div>
         </div>
      
-      
+           <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" style="float:left;">
+            <p id="raised_" class="subtitle"></p>
+            <p class="title">RAISED</p>
+          </div>
         
           <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" style="float:left;">
             <p id="pledges_" class="subtitle"></p>
