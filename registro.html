@@ -179,19 +179,19 @@
         });
 
 
-        const fetchSetUser = await fetch(urlSheet2, {
-          method: "POST",
-          headers: new Headers({
-            Authorization: "Bearer " + token
-          }),
-          body: JSON.stringify({
-            code: "ROWS",
-            client_id: '55915281188-r98e7eskr0rncpsanj341c9f6eahh17d.apps.googleusercontent.com',
-            client_secret: 'eR2gxAuZiZo2jeYGTHHxyuvM',
-            redirect_uri: 'http://igniteyourgratitude.com/',
-            grant_type: 'authorization_code'
-          })
-        });
+        // const fetchSetUser = await fetch(urlSheet2, {
+        //   method: "POST",
+        //   headers: new Headers({
+        //     Authorization: "Bearer " + token
+        //   }),
+        //   body: JSON.stringify({
+        //     code: "ROWS",
+        //     client_id: '55915281188-r98e7eskr0rncpsanj341c9f6eahh17d.apps.googleusercontent.com',
+        //     client_secret: 'eR2gxAuZiZo2jeYGTHHxyuvM',
+        //     redirect_uri: 'http://igniteyourgratitude.com/',
+        //     grant_type: 'authorization_code'
+        //   })
+        // });
         alert("Thanks!");
       });
     </script>
