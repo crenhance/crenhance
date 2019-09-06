@@ -9,8 +9,17 @@
   <body>
     <form id="send_user">
       <label>
-        Full Name:
-        <input type="text" id="full_name" placeholder="Write here Full Name" />
+        First name
+        <input
+          type="text"
+          id="first_name"
+          placeholder="Write here First Name"
+        />
+      </label>
+      <br />
+      <label>
+        Last name
+        <input type="text" id="last_name" placeholder="Write here Last Name" />
       </label>
       <br />
       <label>
@@ -26,6 +35,15 @@
       <label>
         State
         <input type="text" id="state" placeholder="Write here state" />
+      </label>
+      <br />
+      <label
+        >country Country
+        <select id="country">
+          <option value="UNITED STATES">UNITED STATES</option>
+          <option value="CANADA">CANADA</option>
+          <option value="UK">UK</option>
+        </select>
       </label>
       <br />
       <label>
@@ -60,15 +78,17 @@
 
     <script>
       const token =
-        "ya29.Glt4B9r_4Fz4hm29yVg0bsrjf8fW9LoXJJpnzgwrM0gloZP69lOMc0vX0HYSNlHu-OY4zorpBYWVVvHv37nSnZWpAdFbvzLMvUbcyAYcxeX_zopnzAJPPtiyn08Z";
+        "ya29.Glt7B-q9zcJd4gWkiwu1omCsQ_JVdPi8S5J1LpDeXO_uIooVe_fFA_gxWlXrV-yy1jwwkUq8nUHuzu3AEnJFSZux4_9N6h8M_tNGPFwWtOasd6QP2uTUVl6bc6EE";
       const id = "1JWd9F36hEa92WuPwbEDEi2qVRciJIrJhW6ee2szmY58";
       const form = document.getElementById("send_user");
       form.addEventListener("submit", async e => {
         e.preventDefault();
-        const full_name = document.getElementById("full_name").value;
+        const first_name = document.getElementById("first_name").value;
+        const last_name = document.getElementById("last_name").value;
         const email = document.getElementById("email").value;
         const city = document.getElementById("city").value;
         const state = document.getElementById("state").value;
+        const country = document.getElementById("country").value;
         const hours = document.getElementById("hours").value;
         const practice = document.getElementById("practice").value;
         const inspirations = document.getElementById("inspirations").value;
@@ -82,7 +102,7 @@
         });
         const getTotalUsers = await fetchTotalUsers.json();
         const totalUsers = parseInt(getTotalUsers.values[0][0], 10) + 1;
-        const range = `A${totalUsers}:G${totalUsers}`;
+        const range = `A${totalUsers}:I${totalUsers}`;
         const urlSheet2 = `https://sheets.googleapis.com/v4/spreadsheets/${id}/values/Sheet2!${range}?valueInputOption=RAW`;
         const fetchSetUser = await fetch(urlSheet2, {
           method: "PUT",
@@ -93,10 +113,12 @@
             majorDimension: "ROWS",
             values: [
               [
-                full_name,
+                first_name,
+                last_name,
                 email,
                 city,
                 state,
+                country,
                 parseInt(hours),
                 practice,
                 inspirations
@@ -104,7 +126,7 @@
             ]
           })
         });
-        console.log(fetchSetUser);
+        alert("Thanks!");
       });
     </script>
   </body>
