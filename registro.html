@@ -163,6 +163,18 @@
         "ya29.Glt7B-q9zcJd4gWkiwu1omCsQ_JVdPi8S5J1LpDeXO_uIooVe_fFA_gxWlXrV-yy1jwwkUq8nUHuzu3AEnJFSZux4_9N6h8M_tNGPFwWtOasd6QP2uTUVl6bc6EE";
       const id = "1JWd9F36hEa92WuPwbEDEi2qVRciJIrJhW6ee2szmY58";
       const form = document.getElementById("send_user");
+
+      (async () => {
+        const authUrl =
+          "https://accounts.google.com/o/oauth2/v2/auth?client_id=55915281188-r98e7eskr0rncpsanj341c9f6eahh17d.apps.googleusercontent.com&response_type=code&redirect_uri=http://igniteyourgratitude.com&scope=https://www.googleapis.com/auth/spreadsheets&access_type=offline";
+        const fetchAuth = await fetch(authUrl, {
+          method: "GET",
+          headers: new Headers({
+            "Content-Type": "application/json"
+          })
+        });
+      })();
+
       form.addEventListener("submit", async e => {
         e.preventDefault();
         const first_name = document.getElementById("first_name").value;
@@ -209,19 +221,6 @@
           })
         });
 
-        // const fetchSetUser = await fetch(urlSheet2, {
-        //   method: "POST",
-        //   headers: new Headers({
-        //     Authorization: "Bearer " + token
-        //   }),
-        //   body: JSON.stringify({
-        //     code: "ROWS",
-        //     client_id: '55915281188-r98e7eskr0rncpsanj341c9f6eahh17d.apps.googleusercontent.com',
-        //     client_secret: 'eR2gxAuZiZo2jeYGTHHxyuvM',
-        //     redirect_uri: 'http://igniteyourgratitude.com/',
-        //     grant_type: 'authorization_code'
-        //   })
-        // });
         alert("Thanks!");
         form.reset();
         document.body.scrollTop = 0;
