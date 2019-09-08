@@ -159,21 +159,33 @@
       </form>
     </div>
     <script>
-      const token =
-        "ya29.Glx7B0rIY9i9B1YIyyAn3hpP5wZPgtoHzXVhdHvsI9Wy70hcFcL_5gMJXG4baIQ0Dia3I3laREF_Ueo7YRCWHNocqichc-bEE6xsOyVKdH-CzWve040hF1EaK8TUxA";
-      const id = "1JWd9F36hEa92WuPwbEDEi2qVRciJIrJhW6ee2szmY58";
+      const refreshToken = "1/9LhF_hC60Nr-nK7J8AAtbQ3Pfe_z1uQQVjzzUAzNR8s";
       const form = document.getElementById("send_user");
+      const id = "1JWd9F36hEa92WuPwbEDEi2qVRciJIrJhW6ee2szmY58";
 
-      (async () => {
-        const authUrl =
-          "https://accounts.google.com/o/oauth2/v2/auth?client_id=55915281188-r98e7eskr0rncpsanj341c9f6eahh17d.apps.googleusercontent.com&response_type=code&redirect_uri=http://igniteyourgratitude.com&scope=https://www.googleapis.com/auth/spreadsheets&access_type=offline";
-        const fetchAuth = await fetch(authUrl, {
-          method: "GET",
-          headers: new Headers({
-            "Content-Type": "application/json"
-          })
-        });
-      })();
+      const refreshTokenFetch = async () => {
+        const fetchNewToken = await fetch(
+          "https://www.googleapis.com/oauth2/v4/token",
+          {
+            method: "POST",
+            body: JSON.stringify({
+              client_id:
+                "55915281188-r98e7eskr0rncpsanj341c9f6eahh17d.apps.googleusercontent.com",
+              client_secret: "eR2gxAuZiZo2jeYGTHHxyuvM",
+              redirect_uri: "http://igniteyourgratitude.com/registro.html",
+              grant_type: "refresh_token",
+              approval_prompt: "force",
+              access_type: "offline",
+              refresh_token: "1/9LhF_hC60Nr-nK7J8AAtbQ3Pfe_z1uQQVjzzUAzNR8s"
+            })
+          }
+        );
+        const data = await fetchNewToken.json();
+        localStorage.setItem("token", data.access_token);
+      };
+
+      refreshTokenFetch();
+      setInterval(refreshTokenFetch(), 2400000);
 
       form.addEventListener("submit", async e => {
         e.preventDefault();
@@ -189,9 +201,9 @@
 
         const urlSheet1 = `https://sheets.googleapis.com/v4/spreadsheets/${id}/values/Sheet1!E2`;
         const fetchTotalUsers = await fetch(urlSheet1, {
-          method: "get",
+          method: "GET",
           headers: new Headers({
-            Authorization: "Bearer " + token
+            Authorization: "Bearer " + localStorage.getItem("token")
           })
         });
         const getTotalUsers = await fetchTotalUsers.json();
@@ -201,7 +213,7 @@
         const fetchSetUser = await fetch(urlSheet2, {
           method: "PUT",
           headers: new Headers({
-            Authorization: "Bearer " + token
+            Authorization: "Bearer " + localStorage.getItem("token")
           }),
           body: JSON.stringify({
             majorDimension: "ROWS",
